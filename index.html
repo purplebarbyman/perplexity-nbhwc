@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NBHWC Prep Pro - Energize and Empower</title>
+    <meta name="description" content="Comprehensive NBHWC certification study platform with adaptive quizzes, flashcards, and gamified learning.">
+    <link rel="stylesheet" href="style.css">
+    <link rel="manifest" href="#" id="manifest-placeholder">
+    <meta name="theme-color" content="#FFA500">
+    <link rel="icon" type="image/x-icon" href="#" id="favicon-placeholder">
+</head>
+<body>
+    <div id="app">
+        <!-- Navigation Header -->
+        <header class="navbar">
+            <div class="container flex items-center justify-between">
+                <div class="navbar-brand">
+                    <h1>NBHWC Prep Pro</h1>
+                    <span class="brand-subtitle">by Energize and Empower</span>
+                </div>
+                <nav class="navbar-nav">
+                    <button class="nav-btn" data-section="dashboard">Dashboard</button>
+                    <button class="nav-btn" data-section="quiz">Quiz</button>
+                    <button class="nav-btn" data-section="flashcards">Flashcards</button>
+                    <button class="nav-btn" data-section="progress">Progress</button>
+                </nav>
+            </div>
+        </header>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <!-- Dashboard Section -->
+            <section id="dashboard" class="section active">
+                <div class="container">
+                    <div class="welcome-banner">
+                        <h2>Welcome to Your NBHWC Journey!</h2>
+                        <p>Transform your certification preparation into an engaging learning adventure</p>
+                    </div>
+
+                    <!-- Study Planner -->
+                    <div class="study-planner card">
+                        <div class="card__body">
+                            <h3>Personalized Study Plan</h3>
+                            <div class="planner-form">
+                                <div class="form-group">
+                                    <label class="form-label">Exam Date</label>
+                                    <input type="date" id="examDate" class="form-control">
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Study Hours per Week</label>
+                                    <select id="studyHours" class="form-control">
+                                        <option value="5">5 hours</option>
+                                        <option value="10" selected>10 hours</option>
+                                        <option value="15">15 hours</option>
+                                        <option value="20">20 hours</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Current Knowledge Level</label>
+                                    <select id="knowledgeLevel" class="form-control">
+                                        <option value="beginner">Beginner</option>
+                                        <option value="intermediate" selected>Intermediate</option>
+                                        <option value="advanced">Advanced</option>
+                                    </select>
+                                </div>
+                                <button class="btn btn--primary" id="generatePlan">Generate My Study Plan</button>
+                            </div>
+                            <div id="studyTimeline" class="study-timeline hidden">
+                                <h4>Your Personalized Timeline</h4>
+                                <div class="timeline-phases"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Quick Stats -->
+                    <div class="stats-grid">
+                        <div class="stat-card card">
+                            <div class="card__body">
+                                <div class="stat-value" id="totalQuestions">0</div>
+                                <div class="stat-label">Questions Completed</div>
+                            </div>
+                        </div>
+                        <div class="stat-card card">
+                            <div class="card__body">
+                                <div class="stat-value" id="studyStreak">0</div>
+                                <div class="stat-label">Study Streak</div>
+                            </div>
+                        </div>
+                        <div class="stat-card card">
+                            <div class="card__body">
+                                <div class="stat-value" id="overallScore">0%</div>
+                                <div class="stat-label">Overall Score</div>
+                            </div>
+                        </div>
+                        <div class="stat-card card">
+                            <div class="card__body">
+                                <div class="stat-value" id="readinessScore">0%</div>
+                                <div class="stat-label">Exam Readiness</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Domain Progress -->
+                    <div class="domain-progress card">
+                        <div class="card__body">
+                            <h3>Domain Progress</h3>
+                            <div class="domains-grid" id="domainsGrid"></div>
+                        </div>
+                    </div>
+
+                    <!-- Achievements -->
+                    <div class="achievements card">
+                        <div class="card__body">
+                            <h3>Your Achievements</h3>
+                            <div class="achievements-grid" id="achievementsGrid"></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Quiz Section -->
+            <section id="quiz" class="section">
+                <div class="container">
+                    <div class="quiz-header">
+                        <h2>Adaptive Quiz Engine</h2>
+                        <p>Practice with immediate feedback and personalized difficulty adjustment</p>
+                    </div>
+
+                    <!-- Quiz Mode Selection -->
+                    <div class="quiz-modes" id="quizModes">
+                        <div class="mode-card card" data-mode="quick">
+                            <div class="card__body">
+                                <h3>Quick Review</h3>
+                                <p>10 questions • 10-15 minutes</p>
+                                <button class="btn btn--primary">Start Quick Review</button>
+                            </div>
+                        </div>
+                        <div class="mode-card card" data-mode="focused">
+                            <div class="card__body">
+                                <h3>Focused Practice</h3>
+                                <p>25-50 questions • 30-45 minutes</p>
+                                <button class="btn btn--primary">Start Practice</button>
+                            </div>
+                        </div>
+                        <div class="mode-card card premium" data-mode="simulation">
+                            <div class="card__body">
+                                <h3>Full Simulation</h3>
+                                <p>150 questions • 3 hours</p>
+                                <button class="btn btn--outline premium-btn">Upgrade to Access</button>
+                                <div class="premium-badge">Premium</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Domain Filter -->
+                    <div class="domain-filter card">
+                        <div class="card__body">
+                            <h4>Select Domain (Optional)</h4>
+                            <div class="domain-buttons" id="domainFilter">
+                                <button class="domain-btn active" data-domain="all">All Domains</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Quiz Interface -->
+                    <div class="quiz-interface hidden" id="quizInterface">
+                        <div class="quiz-progress">
+                            <div class="progress-bar">
+                                <div class="progress-fill" id="progressFill"></div>
+                            </div>
+                            <span class="progress-text" id="progressText">Question 1 of 10</span>
+                        </div>
+
+                        <div class="question-card card">
+                            <div class="card__body">
+                                <div class="question-domain" id="questionDomain"></div>
+                                <h3 class="question-text" id="questionText"></h3>
+                                <div class="answer-options" id="answerOptions"></div>
+                                <div class="question-actions">
+                                    <button class="btn btn--outline" id="reportQuestion">Report Issue</button>
+                                    <button class="btn btn--secondary" id="skipQuestion">Skip</button>
+                                    <button class="btn btn--primary" id="submitAnswer" disabled>Submit Answer</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Feedback Modal -->
+                        <div class="feedback-modal hidden" id="feedbackModal">
+                            <div class="feedback-content">
+                                <div class="feedback-header">
+                                    <span class="feedback-result" id="feedbackResult"></span>
+                                    <button class="close-btn" id="closeFeedback">&times;</button>
+                                </div>
+                                <div class="feedback-explanation" id="feedbackExplanation"></div>
+                                <div class="feedback-eli5" id="feedbackEli5"></div>
+                                <button class="btn btn--primary" id="nextQuestion">Next Question</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Quiz Results -->
+                    <div class="quiz-results hidden" id="quizResults">
+                        <div class="results-card card">
+                            <div class="card__body">
+                                <h3>Quiz Complete!</h3>
+                                <div class="results-score">
+                                    <div class="score-circle">
+                                        <span class="score-percentage" id="finalScore">0%</span>
+                                    </div>
+                                </div>
+                                <div class="results-breakdown" id="resultsBreakdown"></div>
+                                <div class="results-actions">
+                                    <button class="btn btn--secondary" id="reviewAnswers">Review Answers</button>
+                                    <button class="btn btn--primary" id="retakeQuiz">Take Another Quiz</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Flashcards Section -->
+            <section id="flashcards" class="section">
+                <div class="container">
+                    <div class="flashcards-header">
+                        <h2>Interactive Flashcards</h2>
+                        <p>Master key concepts with spaced repetition</p>
+                    </div>
+
+                    <!-- Flashcard Categories -->
+                    <div class="flashcard-categories">
+                        <div class="category-tabs" id="flashcardTabs">
+                            <button class="tab-btn active" data-category="all">All Cards</button>
+                        </div>
+                    </div>
+
+                    <!-- Flashcard Interface -->
+                    <div class="flashcard-interface">
+                        <div class="flashcard-container">
+                            <div class="flashcard" id="flashcard">
+                                <div class="flashcard-front">
+                                    <div class="card-content">
+                                        <h3 class="card-term" id="cardTerm">Select a category to start studying</h3>
+                                    </div>
+                                </div>
+                                <div class="flashcard-back">
+                                    <div class="card-content">
+                                        <p class="card-definition" id="cardDefinition">Definitions will appear here</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="flashcard-controls">
+                            <button class="btn btn--outline" id="prevCard">Previous</button>
+                            <button class="btn btn--secondary" id="flipCard">Flip Card</button>
+                            <button class="btn btn--outline" id="nextCard">Next</button>
+                        </div>
+
+                        <div class="flashcard-progress">
+                            <span id="cardProgress">Card 1 of 85</span>
+                        </div>
+
+                        <div class="difficulty-feedback">
+                            <p>How well did you know this card?</p>
+                            <div class="difficulty-buttons">
+                                <button class="btn btn--outline difficulty-btn" data-difficulty="hard">Hard</button>
+                                <button class="btn btn--secondary difficulty-btn" data-difficulty="good">Good</button>
+                                <button class="btn btn--primary difficulty-btn" data-difficulty="easy">Easy</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Progress Section -->
+            <section id="progress" class="section">
+                <div class="container">
+                    <div class="progress-header">
+                        <h2>Progress Analytics</h2>
+                        <p>Track your learning journey and identify areas for improvement</p>
+                    </div>
+
+                    <!-- Overall Progress -->
+                    <div class="overall-progress card">
+                        <div class="card__body">
+                            <h3>Overall Progress</h3>
+                            <div class="progress-rings">
+                                <div class="ring-container">
+                                    <div class="progress-ring" data-progress="75">
+                                        <div class="ring-text">75%<br><small>Complete</small></div>
+                                    </div>
+                                </div>
+                                <div class="progress-details">
+                                    <div class="detail-item">
+                                        <span class="detail-label">Questions Answered:</span>
+                                        <span class="detail-value" id="totalAnswered">1,247</span>
+                                    </div>
+                                    <div class="detail-item">
+                                        <span class="detail-label">Accuracy Rate:</span>
+                                        <span class="detail-value" id="accuracyRate">78%</span>
+                                    </div>
+                                    <div class="detail-item">
+                                        <span class="detail-label">Study Time:</span>
+                                        <span class="detail-value" id="studyTime">47.5 hours</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Domain Breakdown -->
+                    <div class="domain-breakdown card">
+                        <div class="card__body">
+                            <h3>Domain Performance</h3>
+                            <div class="domain-bars" id="domainBars"></div>
+                        </div>
+                    </div>
+
+                    <!-- Study Heatmap -->
+                    <div class="study-heatmap card">
+                        <div class="card__body">
+                            <h3>Study Activity</h3>
+                            <div class="heatmap-container">
+                                <div class="heatmap-grid" id="heatmapGrid"></div>
+                                <div class="heatmap-legend">
+                                    <span>Less</span>
+                                    <div class="legend-squares">
+                                        <div class="legend-square" data-level="0"></div>
+                                        <div class="legend-square" data-level="1"></div>
+                                        <div class="legend-square" data-level="2"></div>
+                                        <div class="legend-square" data-level="3"></div>
+                                        <div class="legend-square" data-level="4"></div>
+                                    </div>
+                                    <span>More</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Premium Analytics -->
+                    <div class="premium-analytics card premium">
+                        <div class="card__body">
+                            <h3>Advanced Analytics</h3>
+                            <div class="premium-content">
+                                <div class="premium-overlay">
+                                    <div class="premium-message">
+                                        <h4>Unlock Advanced Analytics</h4>
+                                        <p>Get detailed performance insights, weakness identification, and personalized recommendations.</p>
+                                        <button class="btn btn--primary">Upgrade Now</button>
+                                    </div>
+                                </div>
+                                <div class="analytics-preview">
+                                    <div class="chart-placeholder">Detailed Performance Charts</div>
+                                    <div class="chart-placeholder">Weakness Identification</div>
+                                    <div class="chart-placeholder">Study Recommendations</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="container">
+                <div class="footer-content">
+                    <p>&copy; 2025 NBHWC Prep Pro | A learning platform by Energize and Empower</p>
+                    <a href="https://www.energizeandempower.com" target="_blank" class="footer-link">www.energizeandempower.com</a>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Report Modal -->
+    <div class="modal hidden" id="reportModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Report Question Issue</h3>
+                <button class="close-btn" id="closeReport">&times;</button>
+            </div>
+            <div class="modal-body">
+                <textarea class="form-control" id="reportText" placeholder="Describe the issue with this question..."></textarea>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn--outline" id="cancelReport">Cancel</button>
+                <button class="btn btn--primary" id="submitReport">Submit Report</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
