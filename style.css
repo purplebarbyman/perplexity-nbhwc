@@ -1,32 +1,33 @@
-/* ==============  GLOBAL STYLES  ============== */
+/* Global Variables for Colors and Layout */
 :root {
   --color-primary: #28a745;   /* Energize & Empower green */
   --color-secondary: #fd7e14; /* Accent orange */
   --color-accent: #ffc107;    /* Highlight yellow */
-  --color-dark: #2c3e50;      /* Dark text */
-  --color-light: #f8f9fa;     /* Light background */
-  --color-border: #dee2e6;    /* Light border */
-  --radius: 8px;
-  --shadow: 0 2px 6px rgba(0,0,0,0.06);
+  --color-dark: #2c3e50;      /* Dark text for readability */
+  --color-light: #f8f9fa;     /* Light background for contrast */
+  --color-border: #dee2e6;    /* Border color */
+  --border-radius: 8px;
+  --box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
   --transition: all 0.25s ease-in-out;
-  --font-main: "Segoe UI", Arial, sans-serif;
+  --font-family: "Segoe UI", Arial, sans-serif;
 }
 
+/* Reset box-sizing for all elements */
 *,
 *::before,
 *::after {
   box-sizing: border-box;
 }
 
-html, body {
+body {
   margin: 0;
   padding: 0;
-  font-family: var(--font-main);
+  font-family: var(--font-family);
+  background-color: var(--color-light);
   color: var(--color-dark);
-  background: var(--color-light);
 }
 
-/* ==============  LAYOUT  ============== */
+/* Container for content with max width */
 .container {
   width: 100%;
   max-width: 1100px;
@@ -34,67 +35,66 @@ html, body {
   padding: 1.5rem;
 }
 
-/* Centered flex helper */
+/* Centering utility */
 .flex-center {
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-/* ==============  HEADER / NAV  ============== */
+/* Header styling */
 header {
-  background: var(--color-primary);
-  color: #fff;
+  background-color: var(--color-primary);
   padding: 1rem 0;
-  box-shadow: var(--shadow);
+  box-shadow: var(--box-shadow);
+  color: #fff;
+  text-align: center;
 }
 
 header h1 {
   margin: 0;
   font-size: 1.6rem;
-  text-align: center;
 }
 
-/* ==============  BUTTONS  ============== */
+/* Buttons styling */
 .btn {
   display: inline-block;
   padding: 0.6rem 1.25rem;
   border: none;
-  border-radius: var(--radius);
-  background: var(--color-primary);
+  border-radius: var(--border-radius);
+  background-color: var(--color-primary);
   color: #fff;
   font-size: 1rem;
   cursor: pointer;
   transition: var(--transition);
 }
-
 .btn:hover,
 .btn:focus {
-  background: #20903a;
+  background-color: #20903a; /* darker green on hover */
 }
 
 .btn-secondary {
-  background: var(--color-secondary);
+  background-color: var(--color-secondary);
 }
-
 .btn-secondary:hover,
 .btn-secondary:focus {
-  background: #e36b05;
+  background-color: #e36b05; /* darker orange on hover */
 }
 
-/* ==============  QUIZ MODULE  ============== */
+/* Quiz container styles */
 .quiz-wrapper {
   margin-top: 2rem;
 }
 
 .quiz-container {
-  background: #ffffff;
+  background: #fff;
   border: 1px solid var(--color-border);
-  border-radius: var(--radius);
+  border-radius: var(--border-radius);
   padding: 2rem 1.5rem;
-  box-shadow: var(--shadow);
+  box-shadow: var(--box-shadow);
 }
 
+/* Question text styles */
 .question-text {
   font-size: 1.15rem;
   font-weight: 600;
@@ -102,6 +102,7 @@ header h1 {
   margin-bottom: 1.2rem;
 }
 
+/* List of answer options */
 .answer-list {
   list-style: none;
   padding: 0;
@@ -109,40 +110,40 @@ header h1 {
 }
 
 .answer-option {
-  background: var(--color-light);
+  background-color: #f8f9fa;
   border: 2px solid var(--color-border);
-  color: var(--color-dark);
   padding: 0.75rem 1rem;
-  margin-bottom: 0.9rem;
-  border-radius: var(--radius);
+  margin: 0.8rem 0;
+  border-radius: var(--border-radius);
   cursor: pointer;
-  transition: var(--transition);
+  transition: all 0.25s ease;
+  color: var(--color-dark);
 }
 
 .answer-option:hover {
-  background: #e9ecef;
+  background-color: #e9ecef;
   border-color: var(--color-primary);
 }
 
 .answer-option.selected {
-  background: var(--color-primary);
+  background-color: var(--color-primary);
   color: #fff;
   border-color: var(--color-primary);
 }
 
 .answer-option.correct {
-  background: var(--color-primary);
+  background-color: #28a745;
   color: #fff;
-  border-color: var(--color-primary);
+  border-color: #28a745;
 }
 
 .answer-option.incorrect {
-  background: #dc3545;
+  background-color: #dc3545;
   color: #fff;
   border-color: #dc3545;
 }
 
-/* ==============  FLASHCARDS  ============== */
+/* Flashcard styles */
 .flashcard-container {
   margin-top: 2.5rem;
 }
@@ -151,18 +152,18 @@ header h1 {
   position: relative;
   background: #fff;
   border: 1px solid var(--color-border);
-  border-radius: var(--radius);
+  border-radius: var(--border-radius);
   padding: 2rem 1.5rem;
   text-align: center;
   cursor: pointer;
   min-height: 160px;
-  box-shadow: var(--shadow);
-  transition: var(--transition);
+  box-shadow: var(--box-shadow);
+  transition: all 0.25s ease;
 }
 
 .flashcard:hover {
   transform: translateY(-3px);
-  box-shadow: 0 6px 16px rgba(0,0,0,0.08);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
 }
 
 .flashcard .front,
@@ -173,6 +174,7 @@ header h1 {
 
 .flashcard .back {
   display: none;
+  margin-top: 1rem;
 }
 
 .flashcard.flipped .front {
@@ -183,93 +185,100 @@ header h1 {
   display: block;
 }
 
-/* ==============  PROGRESS & ANALYTICS  ============== */
+/* Progress bars and analytics styles */
 .progress-wrapper {
   margin-top: 3rem;
 }
 
 .progress-bar-container {
   background: var(--color-border);
-  border-radius: var(--radius);
-  overflow: hidden;
+  border-radius: var(--border-radius);
   height: 18px;
+  overflow: hidden;
   margin-top: 0.5rem;
 }
 
 .progress-bar {
   height: 100%;
   width: 0;
-  background: var(--color-primary);
+  background-color: var(--color-primary);
   transition: width 0.6s ease;
 }
 
+/* Domains cards for analytics */
 .domain-card {
   background: #fff;
   border: 1px solid var(--color-border);
-  border-radius: var(--radius);
-  padding: 1.25rem 1rem;
+  border-radius: var(--border-radius);
+  padding: 1.25rem;
   margin-bottom: 1.1rem;
-  box-shadow: var(--shadow);
+  box-shadow: var(--box-shadow);
 }
 
 .domain-card h4 {
-  margin: 0 0 0.4rem 0;
+  margin-top: 0;
+  margin-bottom: 0.4rem;
   font-size: 1.05rem;
 }
 
-/* ==============  ACHIEVEMENTS  ============== */
+/* Achievement badges */
 .achievement-badge {
   display: inline-block;
-  background: var(--color-accent);
-  color: #212529;
-  border-radius: 50%;
   width: 80px;
   height: 80px;
   line-height: 80px;
+  border-radius: 50%;
+  background-color: var(--color-accent);
+  color: #212529;
   margin: 0.4rem;
   font-weight: 700;
-  box-shadow: var(--shadow);
+  font-size: 1rem;
+  box-shadow: var(--box-shadow);
+  text-align: center;
 }
 
-/* ==============  PREMIUM PROMPTS  ============== */
+/* Premium prompts styling */
 .premium-prompt {
-  background: var(--color-secondary);
+  background-color: var(--color-secondary);
   color: #fff;
   padding: 1.25rem;
-  border-radius: var(--radius);
+  border-radius: var(--border-radius);
   margin-top: 2rem;
   text-align: center;
+  font-weight: 600;
 }
 
 .premium-prompt a {
   color: #fff;
   text-decoration: underline;
-  font-weight: 600;
 }
-
 .premium-prompt a:hover {
   color: #ffe1c4;
 }
 
-/* ==============  FOOTER  ============== */
+/* Footer styling */
 footer {
   margin-top: 3rem;
-  background: var(--color-dark);
+  background-color: var(--color-dark);
   color: #fff;
   text-align: center;
-  padding: 1.25rem 0;
+  padding: 1rem 0;
   font-size: 0.9rem;
 }
-
 footer a {
   color: var(--color-accent);
   text-decoration: none;
 }
+footer a:hover {
+  text-decoration: underline;
+}
 
-footer a:hover { text-decoration: underline; }
-
-/* ==============  RESPONSIVE BREAKPOINTS  ============== */
+/* Responsive adjustments */
 @media (max-width: 768px) {
-  .question-text { font-size: 1.05rem; }
-  .flashcard { padding: 1.5rem 1.2rem; }
+  .question-text {
+    font-size: 1.05rem;
+  }
+  .flashcard {
+    padding: 1.5rem 1.2rem;
+  }
 }
